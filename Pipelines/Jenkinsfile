@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build Message') {
+            steps {
+                script {
+                    // Execute the Python script
+                    def pythonScript = """
+                    import sys
+
+                    def main():
+                        print("Hello from Jenkins Pipeline!")
+
+                    if __name__ == "__main__":
+                        main()
+                    """
+                    
+                    // Save the script to a file
+                    writeFile file: 'build_message.py', text: pythonScript
+                    
+                    // Run the Python script
+                    sh 'python3 build_message.py'
+                }
+            }
+        }
+    }
+}

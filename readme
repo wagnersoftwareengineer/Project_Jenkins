@@ -1,0 +1,78 @@
+# Jenkins Pipeline Lab Project
+
+This is a Jenkins Pipeline Laboratory project aimed at demonstrating basic DevOps practices. The project consists of a simple Jenkins pipeline that builds and runs a Python script to print a message.
+
+## Project Overview
+
+The purpose of this project is to provide a basic example of how to set up and use Jenkins pipelines for DevOps tasks. This project includes:
+
+- A Python script (`build_message.py`) that prints a message.
+- A Jenkins pipeline (`Jenkinsfile`) that builds and runs the Python script.
+
+## Files
+
+- **build_message.py**: A simple Python script that prints a message.
+- **Jenkinsfile**: Defines the Jenkins pipeline to execute the Python script.
+
+## Prerequisites
+
+To run this project, you will need:
+
+- Jenkins installed and running.
+- Python installed on the Jenkins server.
+- Jenkins Pipeline plugin installed.
+- Jenkins Python plugin installed.
+
+## Setup Instructions
+
+1. **Clone the Repository**:
+    ```sh
+    git clone <repository-url>
+    cd <repository-directory>
+    ```
+
+2. **Add the Jenkinsfile** to the root of your repository if it is not already present.
+
+3. **Configure Jenkins**:
+    - Go to Jenkins dashboard.
+    - Create a new item (select "Pipeline").
+    - Under "Pipeline", configure the pipeline to use the repository containing the Jenkinsfile.
+
+4. **Run the Pipeline**:
+    - Click on "Build Now" to start the pipeline.
+
+## Jenkinsfile Overview
+
+The `Jenkinsfile` defines a simple pipeline with the following stages:
+
+- **Build Message**: Runs the Python script to print the message.
+
+```groovy
+pipeline {
+    agent any
+
+    stages {
+        stage('Build Message') {
+            steps {
+                script {
+                    // Execute the Python script
+                    def pythonScript = """
+                    import sys
+
+                    def main():
+                        print("Hello from Jenkins Pipeline!")
+
+                    if __name__ == "__main__":
+                        main()
+                    """
+                    
+                    // Save the script to a file
+                    writeFile file: 'build_message.py', text: pythonScript
+                    
+                    // Run the Python script
+                    sh 'python3 build_message.py'
+                }
+            }
+        }
+    }
+}

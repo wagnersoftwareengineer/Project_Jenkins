@@ -1,0 +1,16 @@
+Link Oficial: https://github.com/jenkinsci/docker/blob/master/README.md
+
+###Docker Full
+
+docker run -p 8080:8080 -p 50000:50000 --restart=on-failure -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts-jdk17
+
+##Token
+
+83b478c2471b4b5c91cd86819ed6f319
+
+
+###Docs
+
+https://www.jenkins.io/doc/book/pipeline/syntax/
+
+https://www.jenkins.io/doc/pipeline/steps/workflow-basic-steps/
